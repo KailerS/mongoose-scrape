@@ -6,21 +6,24 @@ module.exports = app => {
     app.get("/scrape", function (req, res) {
         axios.get("https://www.premierleague.com/news").then(function (response) {
             let $ = cheerio.load(response.data);
-            $("span.title").each(function (i, element) {
-                let title = $(element).text().trim();
-                let link = $(element).parents("a").attr("href");
-                let tag = $(element).attr("span.tag");
-                let summary = $(element).attr("span.text");
+            $("figcaption").each(function (i, element) {
+                const result = {}
+                result.title = $(element).children("span.title").text().trim();               
+                result.link = $(element).parents("a").attr("href");
+                result.tag = $(element).children("span.tag").text().trim();
+                result.summary = $(element).children("span.text").text().trim();
 
-                db.collections.insert({
-                    title,
-                    link,
-                    tag,
-                    summary
+                db.Article.create(result)
+                    .then(data =>{
+                        console.log(data)
+                    })
+                .catch(err =>{
+                    res.status(500).end();
                 });
+                
             });
-            res.end();
         });
-
+        
+        res.end();
     });
 };

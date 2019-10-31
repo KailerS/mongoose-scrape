@@ -10,7 +10,7 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-const MONGOD_URI = process.env.MONGOD_URI || "mongod://localhost/mongoHeadlines";
+const MONGOD_URI = process.env.MONGOD_URI || "mongodb://localhost/mongooseHeadlines";
 
 mongoose.connect(MONGOD_URI, { useNewUrlParser: true });
 
