@@ -1,9 +1,6 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const axios = require("axios");
-const cheerio = require("cheerio");
-const db = require("./models");
 
 
 const PORT = process.env.PORT || 3000;
@@ -17,6 +14,8 @@ const MONGOD_URI = process.env.MONGOD_URI || "mongod://localhost/mongoHeadlines"
 
 mongoose.connect(MONGOD_URI, { useNewUrlParser: true });
 
+require("./routes/apiRoutes")(app);
+// require("./routes/htmlRoutes")(app);
 
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
