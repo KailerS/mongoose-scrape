@@ -1,0 +1,40 @@
+.jumbotron {
+    background-image: url("https://www.freepngimg.com/thumb/premier_league/32207-5-premier-league-file.png");
+    background-position: center;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 20%;
+}
+body {
+    background-color: #360D3A;
+    color: #305EA1;
+}
+.card{
+    margin: 10px;
+    background-color: #305EA1;
+}
+
+.card-body{
+    background-color: #C2C1BF;
+}
+.card-text{
+    font-size: 20px;
+}
+a{
+    color: ivory;
+}
+a:hover{
+    color: #360D3A;
+}
+#scrape {
+    margin-top: 15px;
+    background-color: #32CDF4;
+    color: #070F37;
+    font-weight: 900;
+}
+#note {
+    background-color: #32CDF4;
+    color: #070F37;
+    font-weight: 900;
+    float: right;
+}
