@@ -6,10 +6,10 @@ module.exports = app => {
     app.get("/scrape", function (req, res) {
         axios.get("https://www.premierleague.com/news").then(function (response) {
             let $ = cheerio.load(response.data);
+            const result = {}
             $("figcaption").each(function (i, element) {
-                const result = {}
                 result.title = $(element).children("span.title").text().trim();               
-                result.link = $(element).parents("a").attr("href");
+                result.link = "https://www.premierleague.com" + $(element).parents("a").attr("href");
                 result.tag = $(element).children("span.tag").text().trim();
                 result.summary = $(element).children("span.text").text().trim();
 
@@ -17,13 +17,22 @@ module.exports = app => {
                     .then(data =>{
                         console.log(data)
                     })
-                .catch(err =>{
+                .catch(err => {
                     res.status(500).end();
-                });
-                
+                });                
             });
+            res.json(result);
         });
         
-        res.end();
+    });
+
+    app.get("/articles", function(req, res) {
+        db.Article.find({})
+          .then(function(articles){
+            res.json(articles);
+          })
+          .catch(function(err){
+            res.json(err);
+          });
     });
 };

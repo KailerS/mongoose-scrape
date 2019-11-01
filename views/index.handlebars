@@ -1,0 +1,17 @@
+<div class="container">
+        <div class="jumbotron text-center">
+            <h1>Get the latest Premier League News!</h1>
+            <button id="scrape">Click here to scrape the latest articles</button>
+        </div>
+        {{#each article}}
+        <div class="card">
+            <div class="card-header">
+                <h1> <a href={{link}} target="blank">{{title}}</a></h1>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{tag}}</h5>
+                <p class="card-text">{{summary}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
