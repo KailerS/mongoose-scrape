@@ -1,18 +1,36 @@
 <div class="container">
-        <div class="jumbotron text-center">
-            <h1>Get the latest Premier League News!</h1>
-            <button id="scrape">Click here to scrape the latest articles</button>
-        </div>
-        {{#each article}}
-        <div class="card">
-            <div class="card-header">
-                <h1> <a href={{link}} target="blank">{{title}}</a></h1>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">{{tag}}</h5>
-                <p class="card-text">{{summary}}</p>
-                <button id="note">Add a note!</button>
-            </div>
-        </div>
-        {{/each}}
+    <div class="jumbotron text-center">
+        <h1>Get the latest Premier League News!</h1>
+        <button id="scrape">Click here to scrape the latest articles</button>
     </div>
+    {{#each article}}
+    <div class="card">
+        <div class="card-header">
+            <h1> <a href={{link}} target="blank">{{title}}</a></h1>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{tag}}</h5>
+            <p class="card-text">{{summary}}</p>
+            <button class="note" data-id={{_id}}>Add a note!</button>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add a Note!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="input-group">
+                    <textarea class='noteBody' name='body'></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary subNote" data-id={{_id}}>Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

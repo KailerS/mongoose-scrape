@@ -35,4 +35,27 @@ module.exports = app => {
             res.json(err);
           });
     });
+    app.get("/articles/:id", function(req, res) {
+        db.Article.findOne({_id: req.params.id})
+          .populate("note")
+          .then(function(result){
+            res.json(result);
+          })
+          .catch(function(err){
+            res.json(err);
+          });
+      });
+      app.post("/articles/:id", function(req, res) {
+        console.log("This is what is being sent "+ req.body.body)
+        db.Note.create(req.body)
+          .then(function(notedb){
+            return db.Article.findOneAndUpdate({_id: req.params.id}, {$set: {note: notedb._id}}, {new: true})
+          })
+          .then(function(result){
+            res.json(result);
+          })
+          .catch(function(err){
+            res.json(err);
+          });
+      });
 };
