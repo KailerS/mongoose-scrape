@@ -17,6 +17,7 @@ $(function () {
             method: "GET",
             url: "/articles/" + thisId
           }).then(function (data) {
+            console.log(data);
             if (data.note) {
                 $(".noteBody").val(data.note.body);
             }
@@ -28,13 +29,16 @@ $(function () {
     });
 
     $(".subNote").on("click", function () {
-        var thisId = $(this).attr("data-id");
+        const thisId = $(this).attr("data-id");
+        console.log(thisId);
+        const noteValue = $(this).parent().prev().children().val();
+        console.log(noteValue);        
         console.log($(".noteBody").val());
         $.ajax({
             method: "POST",
             url: "/articles/" + thisId,
             data: {
-                body: $(".noteBody").val()
+                body: noteValue
             }
         }).then(function (data) {
                 console.log(data);
