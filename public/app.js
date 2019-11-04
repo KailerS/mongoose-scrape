@@ -13,6 +13,7 @@ $(function () {
     $(".note").on("click", function () {
         $(".noteBody").val("");
         let thisId = $(this).attr("data-id");
+        console.log(thisId);
         $.ajax({
             method: "GET",
             url: "/articles/" + thisId
@@ -21,7 +22,7 @@ $(function () {
             if (data.note) {
                 $(".noteBody").val(data.note.body);
             }
-            $(".modal").show();
+            $(`#${thisId}`).show();
         })
     });
     $(".close").on("click", () => {

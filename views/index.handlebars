@@ -14,7 +14,7 @@
             <button class="note" data-id={{_id}}>Add a note!</button>
         </div>
     </div>
-    <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal" tabindex="-1" role="dialog" id={{_id}}>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -24,7 +24,7 @@
                     </button>
                 </div>
                 <div class="input-group">
-                    <textarea class='noteBody' name='body'></textarea>
+                    <textarea class="form-control noteBody" name='body'></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary subNote" data-id={{_id}}>Save changes</button>
