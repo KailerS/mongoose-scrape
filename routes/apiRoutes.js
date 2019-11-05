@@ -46,7 +46,6 @@ module.exports = app => {
           });
       });
       app.post("/articles/:id", function(req, res) {
-        console.log("This is what is being sent "+ req.body.body)
         db.Note.create(req.body)
           .then(function(notedb){
             return db.Article.findOneAndUpdate({_id: req.params.id}, {$set: {note: notedb._id}}, {new: true})

@@ -31,10 +31,7 @@ $(function () {
 
     $(".subNote").on("click", function () {
         const thisId = $(this).attr("data-id");
-        console.log(thisId);
         const noteValue = $(this).parent().prev().children().val();
-        console.log(noteValue);        
-        console.log($(".noteBody").val());
         $.ajax({
             method: "POST",
             url: "/articles/" + thisId,
@@ -46,6 +43,5 @@ $(function () {
                 $(".modal").hide();
         });
         $(".noteBody").val("");
-
     });
 });
