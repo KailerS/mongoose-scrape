@@ -57,4 +57,11 @@ module.exports = app => {
             res.json(err);
           });
       });
+
+      app.delete("/note/:id", function(req, res) {
+        db.Note.remove({_id: req.params.id}).then(function(data){
+          res.json(data);
+        });
+
+      });
 };

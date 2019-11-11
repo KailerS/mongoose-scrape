@@ -44,4 +44,13 @@ $(function () {
         });
         $(".noteBody").val("");
     });
+    $(".clear").on("click", function (){
+        const noteId = $(this).attr("data-id");
+        $.ajax({
+            method: "DELETE",
+            url: "/note/" + noteId
+        }).then(function (data){
+            $(".modal").hide();
+        });
+    });
 });
