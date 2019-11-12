@@ -23,7 +23,7 @@ $(function () {
                 $(".noteBody").val(data.note.body);
             }
             $(`#${thisId}`).show();
-        })
+        });
     });
     $(".close").on("click", () => {
         $(".modal").hide();
@@ -42,7 +42,7 @@ $(function () {
                 console.log(data);
                 $(".modal").hide();
         });
-        $(".noteBody").val("");
+        location.reload();
     });
     $(".clear").on("click", function (){
         const noteId = $(this).attr("data-id");
@@ -50,7 +50,8 @@ $(function () {
             method: "DELETE",
             url: "/note/" + noteId
         }).then(function (data){
-            $(".modal").hide();
+            $(".modal").hide();            
         });
+        location.reload();
     });
 });
